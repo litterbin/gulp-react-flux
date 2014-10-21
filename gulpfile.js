@@ -14,7 +14,7 @@ var browserify = require('browserify'); // Bundles JS.
 var paths = {
     html: ["src/html/*.html"],
     sass: ["src/sass/*.sass"],
-    app_js: ["./src/js/app.jsx"], //TODO: ["src/js/app.jsx"] doesn't works.
+    app_js: ["./src/js/app.js"], //TODO: ["src/js/app.jsx"] doesn't works.
     js: ["src/js/*.js"]
 };
 
@@ -51,12 +51,16 @@ gulp.task("js",["clean"],function() {
 gulp.task('watch',function() {
     gulp.watch(paths.css,['css']);
     gulp.watch(paths.js,['js']);
+    gulp.watch(paths.app_js,['js']);
     gulp.watch(paths.html,['html']);
 });
 
 //Webserver for dev
 gulp.task('webserver',function() {
-    gconnect.server();
+    gconnect.server({
+        root: "dest",
+        livereload: true
+    });
 });
 
 //The default task (called when we run `gulp` from cli)
