@@ -8,14 +8,14 @@ var SearchBox = React.createClass({
         }
     },
     onInputChange: function(e) {
-        this.setState({value: e.target.value});
+        this.setState({value: this.refs.input.value});
         this.props.onChange(e);
     },
     render: function() {
         return (
             <div>
             <p>Search Box</p>
-            <input placeholder={this.props.defaultText} value={this.state.value} onChange={this.onInputChange} />
+            <input placeholder={this.props.defaultText} value={this.state.value} onChange={this.onInputChange} ref="input" />
             </div>
         );
     }
