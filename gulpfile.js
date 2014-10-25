@@ -15,7 +15,7 @@ var paths = {
     html: ["src/html/*.html"],
     sass: ["src/sass/*.sass"],
     app_js: ["./src/js/app.js"], //TODO: ["src/js/app.jsx"] doesn't works.
-    js: ["src/js/*.js"]
+    js: ["src/js/**/*.js"]
 };
 
 //TODO: src_paths and dest_paths

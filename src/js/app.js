@@ -1,41 +1,16 @@
-/** @jsx React.DOM */
-var React = require('react');  // Browserify!
+/** @jsx React.DOM **/
 
-var SearchBox = React.createClass({
-    getInitialState: function() {
-        return {
-            value: "Javascript rules..."
-        }
-    },
-    onInputChange: function(e) {
-        this.setState({value: this.refs.input.value});
-        this.props.onChange(e);
-    },
-    render: function() {
-        return (
-            <div>
-            <p>Search Box</p>
-            <input placeholder={this.props.defaultText} value={this.state.value} onChange={this.onInputChange} ref="input" />
-            </div>
-        );
-    }
-});
+var App = require('./components/App.react');
+var React = require('react');
 
-var globalValue = "";
+var OutlineStartingData = require('./OutlineStartingData');
+var OutlineWebAPIUtils = require('./utils/OutlineWebAPIUtils');
 
-var render = function() {
-    React.renderComponent(
-        new React.DOM.div({},
-            new SearchBox({
-                defaultText: "my text",
-                onChange: function(e) {
-                    globalValue = e.target.value;
-                    render();
-                }
-            }), 
-            new React.DOM.p({},globalValue)
-        ),
-        document.body);
-}
+OutlineStartingData.init();
+OutlineWebAPIUtils.getAllNodes();
 
-render();
+
+React.renderComponent(
+    <App />,
+    document.getElementById('react')
+);
