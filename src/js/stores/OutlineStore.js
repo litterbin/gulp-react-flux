@@ -28,9 +28,11 @@ OutlineStore.dispatchToken = AppDispatcher.register(function(payload) {
 
     switch(action.type) {
         case "RECEIVE_RAW_NODES":
+            _nodes = action.rawNodes;
             OutlineStore.emitChange();
             break;
         default:
+            console.log(action.type);
             //do nothing
     }
 

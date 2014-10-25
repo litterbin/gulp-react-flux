@@ -18,16 +18,14 @@ var Outline = React.createClass({
         OutlineStore.addChangeListener(this._onChange);
     },
     _onChange: function() {
-      this.setState(getStateFromStore());
+        console.log("_onChange."); 
+        this.setState(getStateFromStore());
     },
     render: function() {
         var rootNode = this.state.nodes;
         return(
          <div className="outline-section">
-            <Node 
-                key={rootNode.key}
-                node={rootNode}
-            />
+            <Node key={rootNode.key} node={rootNode} />
          </div>
         );
     }

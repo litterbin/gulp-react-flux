@@ -4,8 +4,9 @@ var React = require("react");
 var ReactPropTypes = React.PropTypes;
 
 var Node = React.createClass({
-    props: {
+    propTypes: {
         node: ReactPropTypes.object,
+        key: ReactPropTypes.string
     },
     render: function() {
         var node = this.props.node;
