@@ -30,4 +30,4 @@ var AppDispatcher = copyProperties(new Dispatcher(),{
 
 });
 
-modules.exports = AppDispatcher;
+module.exports = AppDispatcher;

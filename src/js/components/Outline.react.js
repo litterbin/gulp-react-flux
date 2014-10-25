@@ -1,6 +1,8 @@
-var React = require('react');
+/** @jsx React.DOM **/
 
+var React = require('react');
 var OutlineStore = require('../stores/OutlineStore');
+var Node = require('./Node.react');
 
 function getStateFromStore() {
     return {
@@ -8,26 +10,27 @@ function getStateFromStore() {
     };
 }
 
-
 var Outline = React.createClass({
     getInitialState: function() {
-        return getStateFromStores();
+        return getStateFromStore();
     },
     componentDidMount: function() {
         OutlineStore.addChangeListener(this._onChange);
     },
     _onChange: function() {
-      this.setState(getStateFromStores());
+      this.setState(getStateFromStore());
     },
     render: function() {
+        var rootNode = this.state.nodes;
         return(
          <div className="outline-section">
-            outline section
+            <Node 
+                key={rootNode.key}
+                node={rootNode}
+            />
          </div>
         );
-
     }
 });
 
 module.exports = Outline;
-    

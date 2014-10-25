@@ -8,7 +8,6 @@ var CHAGE_EVENT = 'change';
 
 var _nodes = {};
 
-
 var OutlineStore = merge(EventEmitter.prototype,{
     emitChange: function() {
         this.emit(CHAGE_EVENT);
@@ -37,3 +36,5 @@ OutlineStore.dispatchToken = AppDispatcher.register(function(payload) {
 
 });
 
+
+module.exports = OutlineStore;

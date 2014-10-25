@@ -1,17 +1,15 @@
-var Outline = require('./Outline.react');
+/** @jsx React.DOM **/
 
 var React = require('react');
-
+var Outline = require('./Outline.react');
 var App = React.createClass({
     render: function() {
         return  (
             <div className="outlineapp">
-            <Outline />
+                <Outline />
             </div>
         );
     }
 });
-
-console.log('App',App,module);
 
 module.exports = App;
