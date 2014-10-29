@@ -1,12 +1,25 @@
 /** @jsx React.DOM **/
 
 var React = require('react');
-var Outline = require('./Outline.react');
+
+var Router = require('react-router');
+var Link = Router.Link;
+
 var App = React.createClass({
     render: function() {
         return  (
-            <div className="outlineapp">
-                <Outline />
+            <div>
+                <header>
+                    <ul>
+                        <li><Link to="app">Dashboard</Link></li>
+                        <li><Link to="inbox">Inbox</Link></li>
+                        <li><Link to="calendar">Calendar</Link></li>
+                    </ul>
+                    Logged in as Joe
+                </header>
+
+                {/* this is the important part */}
+                <this.props.activeRouteHandler />
             </div>
         );
     }
