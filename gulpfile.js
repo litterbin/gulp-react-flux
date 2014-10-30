@@ -2,7 +2,7 @@
 // Load some modules which are installed through NPM.
 var gulp = require("gulp");
 var gutil = require('gulp-util');
-var gconnect = require('gulp-connect');
+var connect = require('gulp-connect');
 var sass = require('gulp-sass');
 var del = require('del'); //Bundles JS.
 var source = require('vinyl-source-stream');
@@ -29,12 +29,17 @@ gulp.task('clean',function(done) {
 
 //Html task (minify?)
 gulp.task('html',['clean'],function() {
-    gulp.src(paths.html).pipe(gulp.dest("dest/"));
+    gulp.src(paths.html)
+        .pipe(gulp.dest("dest/"))
+        .pipe(connect.reload());
 });
 
 // Our CSS task. It finds all our css and compiles them.
 gulp.task('css',['clean'],function() {
-    return gulp.src(paths.sass).pipe(sass()).pipe(gulp.dest("dest/css"));
+    return gulp.src(paths.sass)
+            .pipe(sass())
+            .pipe(gulp.dest("dest/css"))
+            .pipe(connect.reload());
 });
 
 // JS task. It will Browserify code and compile React JSX files.
@@ -44,7 +49,8 @@ gulp.task("js",["clean"],function() {
         .transform(reactify)
         .bundle()
         .pipe(source('bundle.js'))
-        .pipe(gulp.dest("./dest/js"));
+        .pipe(gulp.dest("./dest/js"))
+        .pipe(connect.reload());
 });
 
 //Rerun tasks whenever a file changes.
@@ -57,8 +63,9 @@ gulp.task('watch',function() {
 
 //Webserver for dev
 gulp.task('webserver',function() {
-    gconnect.server({
+    connect.server({
         root: "dest",
+        fallback : 'dest/index.html',
         livereload: true
     });
 });
