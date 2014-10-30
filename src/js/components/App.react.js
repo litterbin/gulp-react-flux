@@ -1,7 +1,6 @@
 /** @jsx React.DOM **/
 
 var React = require('react');
-
 var Router = require('react-router');
 var Link = Router.Link;
 
@@ -14,6 +13,7 @@ var App = React.createClass({
                         <li><Link to="app">Dashboard</Link></li>
                         <li><Link to="inbox">Inbox</Link></li>
                         <li><Link to="calendar">Calendar</Link></li>
+                        <li><Link to="todo">Todo</Link></li>
                     </ul>
                     Logged in as Joe
                 </header>
