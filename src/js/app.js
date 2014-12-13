@@ -6,7 +6,6 @@ var Fluxxor = require('fluxxor');
 window.React = React; //For debugging with React debug tool 
 
 var Router = require('react-router');
-var Routes = Router.Routes;
 var Route = Router.Route;
 var DefaultRoute = Router.DefaultRoute;
 
@@ -25,18 +24,17 @@ flux.on("dispatch", function(type, payload) {
     }
 });
 
-var routers = (
-    <Routes location="history" flux={flux}>
-        <Route name="app" path="/" handler={App} >
-            <Route name="inbox"  handler={Inbox} />
-            <Route name="calendar"  handler={Calendar} />
-            <Route name="todo" handler={Todo} />
-            <DefaultRoute handler={Inbox} />
-        </Route>
-    </Routes>
+var routes = (
+    <Route name="app" path="/" handler={App} flux={flux} >
+        <Route name="inbox"  handler={Inbox} />
+        <Route name="calendar"  handler={Calendar} />
+        <Route name="todo" handler={Todo} />
+        <DefaultRoute handler={Inbox} />
+    </Route>
 );
 
-React.renderComponent(
-    routers,
-    document.getElementById('react')
-);
+Router.run(routes, Router.HistoryLocation, function (Handler) {
+    console.log(Handler);
+    React.render(<Handler/>, document.body);
+});
+
