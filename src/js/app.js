@@ -24,8 +24,11 @@ flux.on("dispatch", function(type, payload) {
     }
 });
 
+console.log(flux);
+console.log("app.js");
+
 var routes = (
-    <Route name="app" path="/" handler={App} flux={flux} >
+    <Route name="app" path="/" handler={App}>
         <Route name="inbox"  handler={Inbox} />
         <Route name="calendar"  handler={Calendar} />
         <Route name="todo" handler={Todo} />
@@ -34,7 +37,6 @@ var routes = (
 );
 
 Router.run(routes, Router.HistoryLocation, function (Handler) {
-    console.log(Handler);
-    React.render(<Handler/>, document.body);
+    React.render(<Handler flux={flux} />, document.body);
 });
 

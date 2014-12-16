@@ -12,6 +12,7 @@ var Todo = React.createClass({
     },
     getStateFromFlux: function() {
         var flux = this.getFlux();
+        console.log(flux);
         return flux.store("TodoStore").getState();
     },
     render: function() {
