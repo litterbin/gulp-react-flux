@@ -7,6 +7,7 @@ var RouteHandler = Router.RouteHandler;
 
 var App = React.createClass({
     render: function() {
+        var flux = this.props.flux;
         return  (
             <div>
                 <header>
@@ -18,7 +19,7 @@ var App = React.createClass({
                     </ul>
                     Logged in as Joe
                 </header>
-                <RouteHandler/>
+                <RouteHandler flux={flux} />
             </div>
         );
     }

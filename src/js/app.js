@@ -28,7 +28,7 @@ console.log(flux);
 console.log("app.js");
 
 var routes = (
-    <Route name="app" path="/" handler={App}>
+    <Route name="app" path="/" handler={App} flux={flux} >
         <Route name="inbox"  handler={Inbox} />
         <Route name="calendar"  handler={Calendar} />
         <Route name="todo" handler={Todo} />
@@ -37,6 +37,6 @@ var routes = (
 );
 
 Router.run(routes, Router.HistoryLocation, function (Handler) {
-    React.render(<Handler flux={flux} />, document.body);
+    React.render(<Handler />, document.body);
 });
 
